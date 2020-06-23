@@ -1,0 +1,40 @@
+GSM/GPRS-GPS
+  MENSAJES
+    -Envia mensajes cuando la temperatura supera umbral
+    -Entender el codigo que nos den los profes
+    -Formatear los msjs(
+    “1234 18/06/2020 15:35:24 http://maps.google.com/maps?q=34.88865S,56.15885W
+37.8”
+    )
+    -??Recepcion SMS???
+  GPS
+    -(Hacer que funcione con el protocolo de las ppt)
+    -Recolectar las coordenadas actuales para enviar google maps
+    -Para acceder a fecha y hora
+
+
+MEDICION
+  CONVERSOR A/D
+    -Simula termometro
+    -"ATENCION AL BOTON"(Cancela la medida)
+    -Toma la medida
+    -Convierte a temperatura
+    -Se toman 10 medidas, una cada 250ms y promedia
+    -Los leds coinciden con el estado de la medicion
+  BOTON
+    -Podria ser una tarea que "espera" que se presione el boton
+  LEDS
+    -Modulo de los profes
+
+LOG
+  -Inicialmente se guarda en ram, en un array puede ser, maximo 200 medidas al dia
+  -ID del registro, Fecha y hora, Ubicación y temperatura registrada
+  -Si andamos pro podemos usar memoria no volatil
+
+USB
+  -Menu inicial
+  -Setea ID
+  -Setea umbral
+  -Setea cel
+  -Muestra medidas tomadas
+  -Elimina informacion(Suponemos queson las medidas)
