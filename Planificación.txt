@@ -37,4 +37,4 @@ USB
   -Setea umbral
   -Setea cel
   -Muestra medidas tomadas
-  -Elimina informacion(Suponemos queson las medidas)
+  -Elimina  las medidas
