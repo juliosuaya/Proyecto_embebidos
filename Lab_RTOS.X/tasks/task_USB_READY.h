@@ -3,9 +3,9 @@
 
 #include <stdint.h>
 
-void vTaskUSB(void * args);
-void sendUSB(uint8_t * str,int size);
-uint8_t receiveUSB(void);
+void vTaskUSB(void * args);//Actualizar semaforo de USB para permitir envio
+void sendUSB(uint8_t * str);
+uint8_t receiveUSB(uint8_t * str);
 
 
 

@@ -43,7 +43,7 @@
       </logicalFolder>
       <logicalFolder name="f3" displayName="tasks" projectFiles="true">
         <itemPath>tasks/task_UI.h</itemPath>
-        <itemPath>task_USB_READY.h</itemPath>
+        <itemPath>tasks/task_USB_READY.h</itemPath>
       </logicalFolder>
       <itemPath>FreeRTOSConfig.h</itemPath>
     </logicalFolder>
@@ -87,6 +87,7 @@
       </logicalFolder>
       <logicalFolder name="f3" displayName="tasks" projectFiles="true">
         <itemPath>tasks/task_UI.c</itemPath>
+        <itemPath>tasks/task_USB_READY.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
     </logicalFolder>
