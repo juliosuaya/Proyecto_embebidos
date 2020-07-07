@@ -54,6 +54,11 @@
 #include "system.h"
 
 /**
+ Section: File specific functions
+*/
+void (*BTN1_InterruptHandler)(void) = NULL;
+
+/**
  Section: Driver Interface Function Definitions
 */
 void PIN_MANAGER_Initialize (void)
@@ -69,7 +74,7 @@ void PIN_MANAGER_Initialize (void)
     /****************************************************************************
      * Setting the GPIO Direction SFR(s)
      ***************************************************************************/
-    TRISA = 0xFF77;
+    TRISA = 0xFB77;
     TRISB = 0xAFFF;
     TRISC = 0xFFFF;
     TRISD = 0x001F;
@@ -101,5 +106,66 @@ void PIN_MANAGER_Initialize (void)
     ANSELB = 0x601C;
     ANSELC = 0x0123;
 
+
+    /****************************************************************************
+     * Interrupt On Change: negative
+     ***************************************************************************/
+    CNEN1Bbits.CNIE1B15 = 1;    //Pin : RB15
+    /****************************************************************************
+     * Interrupt On Change: flag
+     ***************************************************************************/
+    CNFBbits.CNFB15 = 0;    //Pin : RB15
+    /****************************************************************************
+     * Interrupt On Change: config
+     ***************************************************************************/
+    CNCONBbits.CNSTYLE = 1;    //Config for PORTB
+    CNCONBbits.ON = 1;    //Config for PORTB
+    
+    /* Initialize IOC Interrupt Handler*/
+    BTN1_SetInterruptHandler(&BTN1_CallBack);
+    
+    /****************************************************************************
+     * Interrupt On Change: Interrupt Enable
+     ***************************************************************************/
+    IFS0CLR= 1 << _IFS0_CNBIF_POSITION; //Clear CNBI interrupt flag
+    IEC0bits.CNBIE = 1; //Enable CNBI interrupt
+}
+
+void __attribute__ ((weak)) BTN1_CallBack(void)
+{
+    flag_btn_1=1;
+
+}
+
+void BTN1_SetInterruptHandler(void (* InterruptHandler)(void))
+{ 
+    IEC0bits.CNBIE = 0; //Disable CNBI interrupt
+    BTN1_InterruptHandler = InterruptHandler; 
+    IEC0bits.CNBIE = 1; //Enable CNBI interrupt
+}
+
+void BTN1_SetIOCInterruptHandler(void *handler)
+{ 
+    BTN1_SetInterruptHandler(handler);
+}
+
+/* Interrupt service routine for the CNBI interrupt. */
+void __attribute__ ((vector(_CHANGE_NOTICE_B_VECTOR), interrupt(IPL1SOFT))) _CHANGE_NOTICE_B( void )
+{
+    if(IFS0bits.CNBIF == 1)
+    {
+        if(CNFBbits.CNFB15 == 1)
+        {
+            if(BTN1_InterruptHandler) 
+            { 
+                BTN1_InterruptHandler(); 
+            }
+            
+            CNFBCLR = 0x8000;  //Clear CNFBbits.CNFB15
+        }
+        
+        // Clear the flag
+        IFS0CLR= 1 << _IFS0_CNBIF_POSITION; // Clear IFS0bits.CNBIF
+    }
 }
 

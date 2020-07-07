@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jcsl1/Desktop/Embebidos/Proyecto_embebidos/Lab_RTOS.X/tasks/task_UI.c</file>
-            <file>file:/C:/Users/jcsl1/Desktop/Embebidos/Proyecto_embebidos/Lab_RTOS.X/tasks/task_USB_READY.c</file>
-            <file>file:/C:/Users/jcsl1/Desktop/Embebidos/Proyecto_embebidos/Lab_RTOS.X/tasks/task_USB_READY.h</file>
+            <file>file:/C:/Users/jcsl1/Desktop/Embebidos/Proyecto_embebidos/Lab_RTOS.X/tasks/task_BUTTON.c</file>
+            <file>file:/C:/Users/jcsl1/Desktop/Embebidos/Proyecto_embebidos/Lab_RTOS.X/tasks/task_GET_TEMP.c</file>
+            <file>file:/C:/Users/jcsl1/Desktop/Embebidos/Proyecto_embebidos/Lab_RTOS.X/main.c</file>
+            <file>file:/C:/Users/jcsl1/Desktop/Embebidos/Proyecto_embebidos/Lab_RTOS.X/tasks/task_BUTTON.h</file>
         </group>
     </open-files>
 </project-private>

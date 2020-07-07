@@ -52,19 +52,26 @@
 
 #include "mcc_generated_files/system.h"
 #include "mcc_generated_files/pin_manager.h"
+#include "tasks/task_USB_READY.h"
+#include "tasks/task_UI.h"
+#include "tasks/task_GET_TEMP.h"
+#include "tasks/task_BUTTON.h"
 
-void blinkLED( void *p_param );
 
-/*
-                         Main application
- */
+
 int main(void)
 {
     // initialize the device
     SYSTEM_Initialize( );
-
+    USB_Init();
+    Boton_Init();
     /* Create the tasks defined within this file. */
-    xTaskCreate( blinkLED, "task1", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY+1, NULL );
+
+    xTaskCreate( vTaskUSB, "task1", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY+1, NULL );
+    xTaskCreate( vTaskMenu, "task2", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY+3, NULL );
+    xTaskCreate( vTaskBoton, "task3", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY+1, NULL );
+    xTaskCreate( vTaskTemperature, "task4", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY+4, NULL );
+    
 
     /* Finally start the scheduler. */
     vTaskStartScheduler( );
@@ -77,9 +84,7 @@ int main(void)
     for(;;);
 }
 
-void blinkLED( void *p_param ){
-    // Add your code here
-}
+
 
 void vApplicationMallocFailedHook( void ){
     /* vApplicationMallocFailedHook() will only be called if

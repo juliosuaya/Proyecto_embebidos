@@ -5,7 +5,7 @@
 
 void vTaskUSB(void * args);//Actualizar semaforo de USB para permitir envio
 void sendUSB(uint8_t * str);
-uint8_t receiveUSB(uint8_t * str);
+void receiveUSB(uint8_t * str);
 
 
 
