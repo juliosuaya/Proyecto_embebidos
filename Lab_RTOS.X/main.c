@@ -68,7 +68,7 @@ int main(void)
     /* Create the tasks defined within this file. */
 
     xTaskCreate( vTaskUSB, "task1", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY+1, NULL );
-    xTaskCreate( vTaskMenu, "task2", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY+3, NULL );
+    xTaskCreate( vTaskMenu, "task2", configMINIMAL_STACK_SIZE+500, NULL, tskIDLE_PRIORITY+3, NULL );
     xTaskCreate( vTaskBoton, "task3", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY+1, NULL );
     xTaskCreate( vTaskTemperature, "task4", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY+4, NULL );
     

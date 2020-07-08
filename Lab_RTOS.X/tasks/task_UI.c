@@ -4,7 +4,7 @@
 #include "task_USB_READY.h"
 #include "task.h"
 #include <stdint.h>
-
+#include "../platform/Log.h"
 
 static uint8_t * menu;
 static uint8_t recibir[40];
@@ -28,6 +28,7 @@ void vTaskMenu(void * args) {
             case MENU:
                 menu = "ESTE ES EL MENU";
                 sendUSB(menu);
+                descargaMedida();
                 receiveUSB(recibir);
                 
 

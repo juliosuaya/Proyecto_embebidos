@@ -41,7 +41,7 @@
       </logicalFolder>
       <logicalFolder name="f2" displayName="platform" projectFiles="true">
         <itemPath>platform/WS2812.h</itemPath>
-        <itemPath>Log.h</itemPath>
+        <itemPath>platform/Log.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="tasks" projectFiles="true">
         <itemPath>tasks/task_UI.h</itemPath>
@@ -89,7 +89,7 @@
       </logicalFolder>
       <logicalFolder name="f2" displayName="platform" projectFiles="true">
         <itemPath>platform/WS2812.c</itemPath>
-        <itemPath>Log.c</itemPath>
+        <itemPath>platform/Log.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="tasks" projectFiles="true">
         <itemPath>tasks/task_UI.c</itemPath>
@@ -223,7 +223,7 @@
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-cross-reference-file" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
-        <property key="heap-size" value=""/>
+        <property key="heap-size" value="500"/>
         <property key="input-libraries" value=""/>
         <property key="kseg-length" value=""/>
         <property key="kseg-origin" value=""/>
