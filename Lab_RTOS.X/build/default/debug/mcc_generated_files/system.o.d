@@ -12,6 +12,7 @@ mcc_generated_files/usb/usb_hal.h  \
  mcc_generated_files/usb/usb_hal_pic32mm.h  \
  mcc_generated_files/usb/usb_device_cdc.h  \
 mcc_generated_files/usb/usb.h  \
- mcc_generated_files/interrupt_manager.h  \
-mcc_generated_files/exceptions.h  \
- mcc_generated_files/rtcc.h 
+ mcc_generated_files/rtcc.h  \
+mcc_generated_files/interrupt_manager.h  \
+ mcc_generated_files/exceptions.h  \
+mcc_generated_files/adc1.h 

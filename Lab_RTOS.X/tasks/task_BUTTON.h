@@ -8,8 +8,8 @@
 
 void vTaskBoton(void * args);
 void boton_apretado();
-void killTemperature();
 void Boton_Init();
+void termino_Medida();
 
 
 

@@ -37,9 +37,11 @@
         <itemPath>mcc_generated_files/mcc.h</itemPath>
         <itemPath>mcc_generated_files/system.h</itemPath>
         <itemPath>mcc_generated_files/rtcc.h</itemPath>
+        <itemPath>mcc_generated_files/adc1.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="platform" projectFiles="true">
         <itemPath>platform/WS2812.h</itemPath>
+        <itemPath>Log.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="tasks" projectFiles="true">
         <itemPath>tasks/task_UI.h</itemPath>
@@ -83,9 +85,11 @@
         <itemPath>mcc_generated_files/mcc.c</itemPath>
         <itemPath>mcc_generated_files/pin_manager.c</itemPath>
         <itemPath>mcc_generated_files/rtcc.c</itemPath>
+        <itemPath>mcc_generated_files/adc1.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="platform" projectFiles="true">
         <itemPath>platform/WS2812.c</itemPath>
+        <itemPath>Log.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="tasks" projectFiles="true">
         <itemPath>tasks/task_UI.c</itemPath>

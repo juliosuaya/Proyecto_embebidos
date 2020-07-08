@@ -14,4 +14,5 @@ tasks/../freeRTOS/include/queue.h  \
  tasks/../freeRTOS/include/task.h  \
 tasks/../freeRTOS/include/list.h  \
  tasks/../mcc_generated_files/pin_manager.h  \
+ tasks/../mcc_generated_files/adc1.h  \
 tasks/task_USB_READY.h 

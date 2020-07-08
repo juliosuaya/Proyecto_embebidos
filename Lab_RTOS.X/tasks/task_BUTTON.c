@@ -4,40 +4,45 @@
 
 #include "portmacro.h"
 #include <stdio.h>
-#include "task_USB_READY.h"
+#include "task_GET_TEMP.h"
 
 
 
 static SemaphoreHandle_t semaforo_btn;
-static int killTask;
+static int wasPressed;
 static TaskHandle_t task_temp;
 
-void Boton_Init(){
-    semaforo_btn=xSemaphoreCreateBinary();
+void Boton_Init() {
+    semaforo_btn = xSemaphoreCreateBinary();
+    wasPressed = 0;
+    flag_btn_1 = 0;
 }
 
-void vTaskBoton(void * args){
-    
-    killTask=0;
-    task_temp=xTaskGetHandle("task4");
-    
-    for(;;){
-        if(flag_btn_1){       
-            flag_btn_1==0;//Asegurarse que la otra task llega antes
+void vTaskBoton(void * args) {
+
+    task_temp = xTaskGetHandle("task4");
+
+    for (;;) {
+        if (flag_btn_1==1 && wasPressed == 0) { //Se apreta por primera vez
+            wasPressed=1;
             xSemaphoreGive(semaforo_btn);
+            vTaskDelay(pdMS_TO_TICKS(10));
+            flag_btn_1 = 0; //Asegurarse que la otra task llega antes
         }
-        if(killTask){
-            /*matar y revivir get temp
-             */
+        if (flag_btn_1==1 && wasPressed == 1) { //Se presiona por segunda vez
+
             vTaskDelete(task_temp);
-            sendUSB("muerto");
+            xTaskCreate( vTaskTemperature, "task4", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY+4, &task_temp );
+            termino_Medida();
         }
     }
 }
-void boton_apretado(){
-    xSemaphoreTake(semaforo_btn,portMAX_DELAY);
+
+void boton_apretado() {
+    xSemaphoreTake(semaforo_btn, portMAX_DELAY);
 }
 
-void killTemperature(){
-    /*flag para mater func*/
+void termino_Medida() {
+    flag_btn_1 = 0;
+    wasPressed = 0;
 }
