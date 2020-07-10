@@ -38,8 +38,15 @@
         <itemPath>mcc_generated_files/system.h</itemPath>
         <itemPath>mcc_generated_files/rtcc.h</itemPath>
         <itemPath>mcc_generated_files/adc1.h</itemPath>
+        <itemPath>mcc_generated_files/uart1.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="platform" projectFiles="true">
+        <logicalFolder name="GPS" displayName="GPS" projectFiles="true">
+          <itemPath>platform/GPS/GPS.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="SIM808" displayName="SIM808" projectFiles="true">
+          <itemPath>platform/SIM808/SIM808.h</itemPath>
+        </logicalFolder>
         <itemPath>platform/WS2812.h</itemPath>
         <itemPath>platform/Log.h</itemPath>
       </logicalFolder>
@@ -48,6 +55,7 @@
         <itemPath>tasks/task_USB_READY.h</itemPath>
         <itemPath>tasks/task_GET_TEMP.h</itemPath>
         <itemPath>tasks/task_BUTTON.h</itemPath>
+        <itemPath>tasks/task_GPS.h</itemPath>
       </logicalFolder>
       <itemPath>FreeRTOSConfig.h</itemPath>
     </logicalFolder>
@@ -86,8 +94,15 @@
         <itemPath>mcc_generated_files/pin_manager.c</itemPath>
         <itemPath>mcc_generated_files/rtcc.c</itemPath>
         <itemPath>mcc_generated_files/adc1.c</itemPath>
+        <itemPath>mcc_generated_files/uart1.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="platform" projectFiles="true">
+        <logicalFolder name="f1" displayName="GPS" projectFiles="true">
+          <itemPath>platform/GPS/GPS.c</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f2" displayName="SIM808" projectFiles="true">
+          <itemPath>platform/SIM808/SIM808.c</itemPath>
+        </logicalFolder>
         <itemPath>platform/WS2812.c</itemPath>
         <itemPath>platform/Log.c</itemPath>
       </logicalFolder>
@@ -96,6 +111,7 @@
         <itemPath>tasks/task_USB_READY.c</itemPath>
         <itemPath>tasks/task_GET_TEMP.c</itemPath>
         <itemPath>tasks/task_BUTTON.c</itemPath>
+        <itemPath>tasks/task_GPS.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
     </logicalFolder>

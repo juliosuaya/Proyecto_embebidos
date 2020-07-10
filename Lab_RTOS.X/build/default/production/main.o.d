@@ -18,4 +18,8 @@ tasks/task_BUTTON.h  \
  tasks/../freeRTOS/include/FreeRTOS.h  \
 tasks/../freeRTOS/include/semphr.h  \
  tasks/../freeRTOS/include/queue.h  \
-tasks/../freeRTOS/include/task.h 
+tasks/../freeRTOS/include/task.h  \
+ platform/SIM808/SIM808.h  \
+ platform/SIM808/../../freeRTOS/include/FreeRTOS.h  \
+ platform/SIM808/../../freeRTOS/include/semphr.h  \
+ platform/SIM808/../../freeRTOS/include/task.h 

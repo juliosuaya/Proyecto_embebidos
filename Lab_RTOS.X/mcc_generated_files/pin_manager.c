@@ -53,6 +53,8 @@
 #include "pin_manager.h"
 #include "system.h"
 
+int flag_btn_1;
+
 /**
  Section: File specific functions
 */
@@ -66,7 +68,7 @@ void PIN_MANAGER_Initialize (void)
     /****************************************************************************
      * Setting the Output Latch SFR(s)
      ***************************************************************************/
-    LATA = 0x0000;
+    LATA = 0x0002;
     LATB = 0x0000;
     LATC = 0x0000;
     LATD = 0x0000;
@@ -74,9 +76,9 @@ void PIN_MANAGER_Initialize (void)
     /****************************************************************************
      * Setting the GPIO Direction SFR(s)
      ***************************************************************************/
-    TRISA = 0xFB77;
+    TRISA = 0xFB75;
     TRISB = 0xAFFF;
-    TRISC = 0xFFFF;
+    TRISC = 0xEFFF;
     TRISD = 0x001F;
 
     /****************************************************************************
@@ -102,7 +104,7 @@ void PIN_MANAGER_Initialize (void)
     /****************************************************************************
      * Setting the Analog/Digital Configuration SFR(s)
      ***************************************************************************/
-    ANSELA = 0x1843;
+    ANSELA = 0x1002;
     ANSELB = 0x601C;
     ANSELC = 0x0123;
 
@@ -133,6 +135,7 @@ void PIN_MANAGER_Initialize (void)
 
 void __attribute__ ((weak)) BTN1_CallBack(void)
 {
+    
     flag_btn_1=1;
 
 }

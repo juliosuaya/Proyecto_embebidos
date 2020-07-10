@@ -3,6 +3,7 @@
 #include "../mcc_generated_files/pin_manager.h"
 #include "../mcc_generated_files/adc1.h"
 #include <stdio.h>
+#include <stdint.h>
 #include "task_USB_READY.h"
 
 void vTaskTemperature(void * args) {
@@ -15,25 +16,32 @@ void vTaskTemperature(void * args) {
         for (i = 0; i < 10; i++) {
             acumulado += tomarTemp();
 
+            //vTaskDelay(pdMS_TO_TICKS(250));
 
         }
-        sprintf(str, "%d", acumulado / 10);
-        sendUSB(str);
+        sprintf(str, "%d", acumulado/10);
+        sendUSB(str); //Luego habria que guardar en el log
         termino_Medida();
 
     }
 }
 
-int tomarTemp() {/*
-    int conversion, i = 0;
-    ADC1_Start();
-    vTaskDelay(pdMS_TO_TICKS(100));
+int tomarTemp() {
+
+    ADC1_ChannelSelect(Temp);
+
+    ADC1_Start();/*
+                  * Esta dando el valor maximo, y si se agrega delay da 0, 
+                  * Se estima que el error esta en el tiempo de muestra.
+                  * */
     ADC1_Stop();
+
     while (!ADC1_IsConversionComplete()) {
         ADC1_Tasks();
+        vTaskDelay(pdMS_TO_TICKS(1));
     }
-    conversion = ADC1_ConversionResultGet();
-    
-    return conversion;*/
-    return 5;
+
+    return ADC1_ConversionResultGet();
+
+
 }

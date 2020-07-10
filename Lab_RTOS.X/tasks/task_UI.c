@@ -5,6 +5,7 @@
 #include "task.h"
 #include <stdint.h>
 #include "../platform/Log.h"
+#include "task_GPS.h"
 
 static uint8_t * menu;
 static uint8_t recibir[40];
@@ -26,10 +27,12 @@ void vTaskMenu(void * args) {
     for (;;) {
         switch (STATES) {
             case MENU:
-                menu = "ESTE ES EL MENU";
-                sendUSB(menu);
-                descargaMedida();
+               // menu = "ESTE ES EL MENU";
+             //   sendUSB(menu);
+                //descargaMedida();
                 receiveUSB(recibir);
+        //        averiguarUbicacion();
+                sendUSB("MENU");
                 
 
                 break;

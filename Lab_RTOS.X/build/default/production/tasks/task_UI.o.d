@@ -20,4 +20,6 @@ tasks/task_UI.h  \
 tasks/task_USB_READY.h  \
  freeRTOS/include/task.h  \
 freeRTOS/include/list.h  \
-tasks/../platform/Log.h 
+tasks/../platform/Log.h  \
+ tasks/task_GPS.h  \
+tasks/../tasks/task_USB_READY.h 

@@ -76,11 +76,12 @@
  */
 typedef enum 
 {
+    Temp =  0xF,
     ADC1_CHANNEL_VDD_CORE =  0x1B,
     ADC1_CHANNEL_VBG =  0x1C,
     ADC1_CHANNEL_AVSS =  0x1D,
     ADC1_CHANNEL_AVDD =  0x1E,
-    ADC1_MAX_CHANNEL_COUNT = 4
+    ADC1_MAX_CHANNEL_COUNT = 5
 } ADC1_CHANNEL;
 
 /**
