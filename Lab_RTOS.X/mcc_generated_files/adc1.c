@@ -84,13 +84,13 @@ void ADC1_Initialize (void)
 
    AD1CON1 = 0x8074;
 
-    // CSCNA disabled; BUFM disabled; SMPI 1; OFFCAL disabled; VCFG AVDD/AVSS; BUFREGEN disabled; 
+    // CSCNA disabled; BUFM disabled; SMPI Generates interrupt after completion of every sample/conversion operation; OFFCAL disabled; VCFG AVDD/AVSS; BUFREGEN disabled; 
 
-   AD1CON2 = 0x4;
+   AD1CON2 = 0x0;
 
-    // SAMC 31; EXTSAM disabled; ADRC PBCLK; ADCS 0; 
+    // SAMC 31; EXTSAM disabled; ADRC PBCLK; ADCS 4; 
 
-   AD1CON3 = 0x1F00;
+   AD1CON3 = 0x1F04;
 
     // CH0SA AN0; CH0NA AVSS; 
 

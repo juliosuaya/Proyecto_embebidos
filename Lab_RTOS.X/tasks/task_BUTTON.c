@@ -25,8 +25,8 @@ void vTaskBoton(void * args) {
     for (;;) {
         if (flag_btn_1==1 && wasPressed == 0) { //Se apreta por primera vez
             wasPressed=1;
+            vTaskDelay(pdMS_TO_TICKS(100));
             xSemaphoreGive(semaforo_btn);
-            vTaskDelay(pdMS_TO_TICKS(10));
             flag_btn_1 = 0; //Asegurarse que la otra task llega antes
         }
         if (flag_btn_1==1 && wasPressed == 1) { //Se presiona por segunda vez

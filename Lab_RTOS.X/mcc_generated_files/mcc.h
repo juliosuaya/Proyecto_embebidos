@@ -51,13 +51,13 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#include "rtcc.h"
 #include "usb/usb.h"
 #include "watchdog.h"
-#include "rtcc.h"
+#include "uart1.h"
+#include "adc1.h"
 #include "interrupt_manager.h"
 #include "exceptions.h"
-#include "adc1.h"
-#include "uart1.h"
 
 #warning "This file will be removed in future MCC releases. Use system.h instead."
 

@@ -19,7 +19,7 @@ void vTaskTemperature(void * args) {
             //vTaskDelay(pdMS_TO_TICKS(250));
 
         }
-        sprintf(str, "%d", acumulado/10);
+        sprintf(str, "%d \n", acumulado/10);
         sendUSB(str); //Luego habria que guardar en el log
         termino_Medida();
 
@@ -30,10 +30,7 @@ int tomarTemp() {
 
     ADC1_ChannelSelect(Temp);
 
-    ADC1_Start();/*
-                  * Esta dando el valor maximo, y si se agrega delay da 0, 
-                  * Se estima que el error esta en el tiempo de muestra.
-                  * */
+    ADC1_Start();
     ADC1_Stop();
 
     while (!ADC1_IsConversionComplete()) {
@@ -41,7 +38,8 @@ int tomarTemp() {
         vTaskDelay(pdMS_TO_TICKS(1));
     }
 
-    return ADC1_ConversionResultGet();
+    int res=ADC1_ConversionResultGet();
+    return res;
 
 
 }
