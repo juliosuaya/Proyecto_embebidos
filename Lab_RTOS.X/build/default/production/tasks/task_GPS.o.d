@@ -14,4 +14,6 @@ tasks/../tasks/task_USB_READY.h  \
  tasks/../platform/SIM808/../../freeRTOS/include/queue.h  \
  tasks/../platform/SIM808/../../freeRTOS/include/task.h  \
  tasks/../platform/SIM808/../../freeRTOS/include/list.h  \
- tasks/../platform/GPS/GPS.h 
+ tasks/../platform/GPS/GPS.h  \
+tasks/../freeRTOS/include/FreeRTOS.h  \
+ tasks/../freeRTOS/include/semphr.h 

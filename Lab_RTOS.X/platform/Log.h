@@ -1,15 +1,16 @@
 #ifndef _LOG_H_
 #define _LOG_H_
 #include <time.h>
+#include <stdint.h>
 
 typedef struct{
-    int id_registro;
+    int id_registro;//Puede ser el indice del array? o si es un valor "acumulativo"
     int lectura;
-    char * ubicacion;
+    uint8_t * ubicacion;
     time_t fecha; 
 }medida_t;
 
-void agregarMedida(medida_t * medida);
+void agregarMedida(int lectura);
 /*Recibir el struct o solo la medida?
  */
 

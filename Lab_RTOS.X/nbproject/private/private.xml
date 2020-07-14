@@ -3,9 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jcsl1/Desktop/Embebidos/Proyecto_embebidos/Lab_RTOS.X/tasks/task_BUTTON.c</file>
-            <file>file:/C:/Users/jcsl1/Desktop/Embebidos/Proyecto_embebidos/Lab_RTOS.X/tasks/task_GET_TEMP.c</file>
-            <file>file:/C:/Users/jcsl1/Desktop/Embebidos/Proyecto_embebidos/Lab_RTOS.X/mcc_generated_files/adc1.c</file>
+            <file>file:/C:/Users/jcsl1/Desktop/Embebidos/Proyecto_embebidos/Lab_RTOS.X/tasks/task_GPS.h</file>
+            <file>file:/C:/Users/jcsl1/Desktop/Embebidos/Proyecto_embebidos/Lab_RTOS.X/tasks/task_GPS.c</file>
+            <file>file:/C:/Users/jcsl1/Desktop/Embebidos/Proyecto_embebidos/Lab_RTOS.X/tasks/task_UI.c</file>
+            <file>file:/C:/Users/jcsl1/Desktop/Embebidos/Proyecto_embebidos/Lab_RTOS.X/platform/Log.c</file>
+            <file>file:/C:/Users/jcsl1/Desktop/Embebidos/Proyecto_embebidos/Lab_RTOS.X/platform/Log.h</file>
+            <file>file:/C:/Users/jcsl1/Desktop/Embebidos/Proyecto_embebidos/Lab_RTOS.X/main.c</file>
         </group>
     </open-files>
 </project-private>

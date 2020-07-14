@@ -29,10 +29,10 @@ void vTaskMenu(void * args) {
             case MENU:
                // menu = "ESTE ES EL MENU";
              //   sendUSB(menu);
-                //descargaMedida();
+                descargaMedida();
                 receiveUSB(recibir);
-        //        averiguarUbicacion();
-                sendUSB("MENU");
+                sendUSB("\n");
+                getControl();
                 
 
                 break;

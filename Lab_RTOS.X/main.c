@@ -56,6 +56,7 @@
 #include "tasks/task_UI.h"
 #include "tasks/task_GET_TEMP.h"
 #include "tasks/task_BUTTON.h"
+#include "tasks/task_GPS.h"
 #include "platform/SIM808/SIM808.h"
 
 int main(void) {
@@ -63,15 +64,20 @@ int main(void) {
     SYSTEM_Initialize();
     USB_Init();
     Boton_Init();
+    Temp_Init();
     /* Create the tasks defined within this file. */
 
     xTaskCreate(vTaskUSB, "task1", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(vTaskMenu, "task2", configMINIMAL_STACK_SIZE + 500, NULL, tskIDLE_PRIORITY + 3, NULL);
     xTaskCreate(vTaskBoton, "task3", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(vTaskTemperature, "task4", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 4, NULL);
+    xTaskCreate(vTaskGPS, "task5", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1, NULL);
+    
+    
+    
 
-  //  xTaskCreate(SIM808_taskCheck, "modemTask", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1, NULL);
- //   xTaskCreate(SIM808_initModule, "modemIni", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 2, &modemInitHandle);
+    xTaskCreate(SIM808_taskCheck, "modemTask", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1, NULL);
+    xTaskCreate(SIM808_initModule, "modemIni", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 2, &modemInitHandle);
 
 
     /* Finally start the scheduler. */
