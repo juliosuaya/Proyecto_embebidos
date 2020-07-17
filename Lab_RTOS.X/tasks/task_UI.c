@@ -33,7 +33,9 @@ void vTaskMenu(void * args) {
              //   
                 receiveUSB(recibir);
                 sendUSB("\n");
-                getControl();/*
+                
+                getControl();
+                /*
                 opcion_menu=atoi(recibir);
                 if(opcion_menu==1){
                     STATES=SET_PHONE;

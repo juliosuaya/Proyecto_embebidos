@@ -6,8 +6,8 @@
 typedef struct {
     int id_registro; //Puede ser el indice del array? o si es un valor "acumulativo"
     uint16_t lectura; //Como se va a formatear, 
-    uint8_t latitud; // Guardar como longitud y latitud 
-    uint8_t longitud; // Guardar como longitud y latitud 
+    float latitud; // Guardar como longitud y latitud 
+    float longitud; // Guardar como longitud y latitud 
     time_t fecha;
 } medida_t;
 

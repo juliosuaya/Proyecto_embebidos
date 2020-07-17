@@ -45,7 +45,7 @@ void GPS_getPosition( GPSPosition_t *p_pos, uint8_t *p_sentence ){
     uint8_t offset;
     uint8_t *ptr;
 
-    offset=GPS_RMC_CORRECCION+GPS_RMC_RUN_LEN+GPS_RMC_COMMA_LEN+GPS_RMC_FIX_LEN+GPS_RMC_COMMA_LEN+GPS_RMC_UTC_LEN+GPS_RMC_COMMA_LEN;
+    offset=GPS_RMC_RUN_LEN+GPS_RMC_COMMA_LEN+GPS_RMC_FIX_LEN+GPS_RMC_COMMA_LEN+GPS_RMC_UTC_LEN+GPS_RMC_COMMA_LEN;
     p_pos->latitude=strtod( (p_sentence+offset), &ptr );
     p_pos->longitude=strtod( (ptr+GPS_RMC_COMMA_LEN), &ptr );
 }
@@ -64,12 +64,13 @@ void GPS_getPosition( GPSPosition_t *p_pos, uint8_t *p_sentence ){
 void GPS_getUTC( struct tm *p_newtime, uint8_t *p_sentence ){
     uint8_t offset;
     uint8_t temp_str[5];
+//+CGNSINF: 1,1,20200716222824.000,-34.884802,-56.069522,18.500,0.39,34.7,1,,1.1,1.4,0.8,,10,7,,,35,,
 
-    offset= GPS_RMC_CORRECCION+GPS_RMC_RUN_LEN+GPS_RMC_COMMA_LEN+GPS_RMC_FIX_LEN+GPS_RMC_COMMA_LEN;
+    offset=GPS_RMC_RUN_LEN+GPS_RMC_COMMA_LEN+GPS_RMC_FIX_LEN+GPS_RMC_COMMA_LEN; //agregar 10 al offset
     // Copy Year YYYY
     memset( temp_str, 0, 5 );
     strncpy( temp_str, (p_sentence+offset), 4 );
-    p_newtime->tm_year = atoi( temp_str )-1900;
+    p_newtime->tm_year=atoi( temp_str )-1900;
     offset+=4;
     // Copy Month MM
     memset( temp_str, 0, 5 );
@@ -123,8 +124,8 @@ double GPS_getGroundDistance( GPSPosition_t *a, GPSPosition_t *b ){
 }
 
 void GPS_generateGoogleMaps( uint8_t *p_linkDest, GPSPosition_t p_gpsData ){
-    uint8_t latitude[20];
-    uint8_t longitude[20];
+    uint8_t latitude[128];
+    uint8_t longitude[128];
 
     strcpy( p_linkDest, "http://maps.google.com/?q=" );
     sprintf( latitude, "%f", p_gpsData.latitude );

@@ -48,7 +48,7 @@ time_t obtenerFecha() {
     return tiempo;
 }
 
-void obtenerUbicacion(uint8_t * longitud, uint8_t * latitud) {
-    *longitud = ubicacion.longitude;
-    *latitud = ubicacion.latitude;
+void obtenerUbicacion(float * longitud, float * latitud) {
+    *longitud =(float) ubicacion.longitude;
+    *latitud = (float) ubicacion.latitude;
 }

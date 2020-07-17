@@ -9,6 +9,6 @@ void vTaskGPS(void * args);
 void getControl();
 
 time_t obtenerFecha(); //Verificar formato
-void obtenerUbicacion(uint8_t *,uint8_t *);
+void obtenerUbicacion(float *,float *);
 
 #endif
