@@ -27,7 +27,7 @@
 #define GPS_EARTH_RADIUS        6371
 
 #define GPS_RMC_COMMA_LEN       1
-#define GPS_RMC_RUN_LEN         1
+#define GPS_RMC_RUN_LEN         13
 #define GPS_RMC_FIX_LEN         1
 #define GPS_RMC_UTC_LEN         18
 #define GPS_RMC_LAT_LEN         10
