@@ -6,6 +6,7 @@
 
 static uint8_t trama [255];
 static GPSPosition_t ubicacion;
+static GPSPosition_t ubicacionPrueba;
 static struct tm hora;
 static uint8_t link[150];
 static int8_t bandera;
@@ -31,15 +32,23 @@ void vTaskGPS(void * args) {
 void getControl() {
     sendUSB(trama);
 
-    
+
     sendUSB(ctime(&tiempo));
 
     sendUSB(link);
+
+/*
+    xSemaphoreTake(c_semGSMIsReady, portMAX_DELAY);
+    SIM808_sendSMS("\"098283527\"", "Prueba");
+    xSemaphoreGive(c_semGSMIsReady);
+*/
 }
 
-time_t obtenerFecha(){
+time_t obtenerFecha() {
     return tiempo;
 }
-uint8_t * obtenerUbicacion(){
-    return link;
+
+void obtenerUbicacion(uint8_t * longitud, uint8_t * latitud) {
+    *longitud = ubicacion.longitude;
+    *latitud = ubicacion.latitude;
 }

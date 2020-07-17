@@ -9,6 +9,7 @@
 
 static uint8_t * menu;
 static uint8_t recibir[40];
+static uint8_t opcion_menu;
 
 void vTaskMenu(void * args) {
 
@@ -29,12 +30,29 @@ void vTaskMenu(void * args) {
             case MENU:
                // menu = "ESTE ES EL MENU";
              //   sendUSB(menu);
-                descargaMedida();
+             //   
                 receiveUSB(recibir);
                 sendUSB("\n");
-                getControl();
+                getControl();/*
+                opcion_menu=atoi(recibir);
+                if(opcion_menu==1){
+                    STATES=SET_PHONE;
+                }else
+                if(opcion_menu==2){
+                    STATES=SET_ID;
+                }else if(opcion_menu==3){
+                    STATES=SET_UMBRAL_TEMP;
+                }else if(opcion_menu==4){
+                    STATES=SHOW_LOG;
+                }else if(opcion_menu==5){
+                    STATES=RESET_LOG;
+                }else if(opcion_menu==6){
+                    STATES=SET_COLORES;
+                }else{
+                    STATES=MENU;
+                }
                 
-
+*/
                 break;
 
             case SET_PHONE:
@@ -53,19 +71,17 @@ void vTaskMenu(void * args) {
                 receiveUSB(recibir);
                 break;
             case SHOW_LOG:
-                menu = "ESTE ES EL MENU";
-                sendUSB(menu);
-                receiveUSB(recibir);
+                descargaMedida();
+                STATES=MENU;
                 break;
             case RESET_LOG:
-                menu = "ESTE ES EL MENU";
-                sendUSB(menu);
-                receiveUSB(recibir);
+                resetarLog();
+                STATES=MENU;
                 break;
             case SET_COLORES:
                 menu = "NO ESTA IMPLEMENTADO";
                 sendUSB(menu);
-                receiveUSB(recibir);
+                STATES=MENU;
                 break;
         }
 

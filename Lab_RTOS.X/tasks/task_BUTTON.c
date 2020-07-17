@@ -25,12 +25,13 @@ void vTaskBoton(void * args) {
     for (;;) {
         if (flag_btn_1==1 && wasPressed == 0) { //Se apreta por primera vez
             wasPressed=1;
-            vTaskDelay(pdMS_TO_TICKS(100));
+            vTaskDelay(pdMS_TO_TICKS(100)); 
             xSemaphoreGive(semaforo_btn);
             flag_btn_1 = 0; //Asegurarse que la otra task llega antes
         }
         if (flag_btn_1==1 && wasPressed == 1) { //Se presiona por segunda vez
 
+            
             vTaskDelete(task_temp);
             xTaskCreate( vTaskTemperature, "task4", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY+4, &task_temp );
             termino_Medida();

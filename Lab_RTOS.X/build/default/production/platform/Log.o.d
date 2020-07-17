@@ -12,4 +12,6 @@ platform/Log.h  \
  platform/../freeRTOS/include/semphr.h  \
  platform/../freeRTOS/include/queue.h  \
 platform/../tasks/task_GPS.h  \
- platform/../tasks/../tasks/task_USB_READY.h 
+ platform/../tasks/../tasks/task_USB_READY.h  \
+freeRTOS/include/task.h  \
+ freeRTOS/include/list.h 

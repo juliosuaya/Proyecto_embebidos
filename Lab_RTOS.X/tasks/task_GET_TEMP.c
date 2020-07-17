@@ -17,7 +17,7 @@ void Temp_Init() {
 void vTaskTemperature(void * args) {
     int i;
     char str[50];
-    double acumulado = 0;
+    uint16_t acumulado = 0;
 
     temp_min = 32;
     temp_max = 42;
@@ -28,15 +28,19 @@ void vTaskTemperature(void * args) {
 
 
         for (i = 0; i < 10; i++) {
-            acumulado += (tomarTemp()*(temp_max - temp_min) / 1023);
+            acumulado += tomarTemp()*10/1023 +32;
 
             //vTaskDelay(pdMS_TO_TICKS(250));
 
         }
-        acumulado /= 10;
-        acumulado += temp_min;
+  //      acumulado /= 10;
+       // acumulado = (acumulado*((temp_max*10-temp_min*10)/1023))+temp_min*10;
+       
+        
         agregarMedida(acumulado);
+        acumulado = 0;
         termino_Medida();
+        
 
     }
 }
