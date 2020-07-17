@@ -35,14 +35,11 @@ void descargaMedida(){
         /*
          * Enviar por usb cada medida valida
          */
-//        sprintf(string_aux,"%d \n", iterator);
-//        sendUSB(string_aux);
-//        string_aux[0]='\0';
         
         vTaskDelay(5);
         
         aux=&log[iterator];
-        sprintf(string_aux,"\n %s %d %d %d %d",ctime(&aux->fecha),aux->id_registro,aux->lectura,aux->longitud,aux->latitud);
+        sprintf(string_aux,"\n %s %d %d %f %f \n",ctime(&aux->fecha),aux->id_registro,aux->lectura,aux->longitud,aux->latitud);
         sendUSB(string_aux);
         
         

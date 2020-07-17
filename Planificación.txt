@@ -38,3 +38,9 @@ USB
   -Setea cel
   -Muestra medidas tomadas
   -Elimina  las medidas
+
+
+CORREGIR MENU
+LOG, TRAMA VALIDA
+CHEQUEO MSJ(GUARDAR NUMERO E ID)
+COMENTAR CODIGO

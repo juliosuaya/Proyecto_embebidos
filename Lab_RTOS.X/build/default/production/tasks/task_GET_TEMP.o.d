@@ -1,6 +1,7 @@
 build/default/production/tasks/task_GET_TEMP.o:  \
 tasks/task_GET_TEMP.c  \
  tasks/task_GET_TEMP.h  \
+tasks/../platform/WS2812.h  \
 tasks/task_BUTTON.h  \
  tasks/../freeRTOS/include/FreeRTOS.h  \
  tasks/../freeRTOS/include/../../FreeRTOSConfig.h  \

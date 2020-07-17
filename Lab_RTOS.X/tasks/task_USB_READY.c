@@ -35,9 +35,7 @@ void vTaskUSB(void * args) {
     }
 }//Actualizar semaforo de USB para permitir envio
 
-void sendUSB(uint8_t * str) {/*
-    uint8_t str_aux[200];
-    strcpy(str_aux,str);*/
+void sendUSB(uint8_t * str) {
     xSemaphoreTake(semaforoEnvio, portMAX_DELAY);
     putsUSBUSART(str);
 }

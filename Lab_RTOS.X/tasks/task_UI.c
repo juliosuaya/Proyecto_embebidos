@@ -9,7 +9,7 @@
 
 static uint8_t * menu;
 static uint8_t recibir[40];
-static uint8_t opcion_menu;
+static uint8_t uint_auxiliar;
 
 void vTaskMenu(void * args) {
 
@@ -28,49 +28,63 @@ void vTaskMenu(void * args) {
     for (;;) {
         switch (STATES) {
             case MENU:
-               // menu = "ESTE ES EL MENU";
-             //   sendUSB(menu);
+                vTaskDelay(100);
+                menu = "\n Presione 1 para setear numero de telefono, \n"
+                        "2 para setear id dispositivo, \n"
+                        "3 para setear temperatura umbral,\n"
+                        "4 para descargar el log \n"
+                        "5 para resetear el log.\n"
+                        "(6 para cambiar colores)\n";
+                sendUSB(menu);
              //   
                 receiveUSB(recibir);
                 sendUSB("\n");
                 
-                getControl();
-                /*
-                opcion_menu=atoi(recibir);
-                if(opcion_menu==1){
+                
+                
+                uint_auxiliar=atoi(recibir);
+                if(uint_auxiliar==1){
                     STATES=SET_PHONE;
                 }else
-                if(opcion_menu==2){
+                if(uint_auxiliar==2){
                     STATES=SET_ID;
-                }else if(opcion_menu==3){
+                }else if(uint_auxiliar==3){
                     STATES=SET_UMBRAL_TEMP;
-                }else if(opcion_menu==4){
+                }else if(uint_auxiliar==4){
                     STATES=SHOW_LOG;
-                }else if(opcion_menu==5){
+                }else if(uint_auxiliar==5){
                     STATES=RESET_LOG;
-                }else if(opcion_menu==6){
+                }else if(uint_auxiliar==6){
                     STATES=SET_COLORES;
                 }else{
                     STATES=MENU;
                 }
                 
-*/
+
                 break;
 
             case SET_PHONE:
-                menu = "ESTE ES EL MENU";
+                menu = "NO_IMPLEMENTADO";
                 sendUSB(menu);
-                receiveUSB(recibir);
+                STATES=MENU;
                 break;
             case SET_ID:
                 menu = "ESTE ES EL MENU";
                 sendUSB(menu);
                 receiveUSB(recibir);
+                STATES=MENU;
                 break;
             case SET_UMBRAL_TEMP:
-                menu = "ESTE ES EL MENU";
-                sendUSB(menu);
                 receiveUSB(recibir);
+                uint_auxiliar=atoi(recibir);
+                if(uint_auxiliar>42 || uint_auxiliar<32){
+                    menu="El valor debe estar entre 32 y 42";
+                    sendUSB(menu);
+                    
+                    break;
+                }
+                set_temp_umbral(uint_auxiliar);
+                STATES=MENU;
                 break;
             case SHOW_LOG:
                 descargaMedida();
@@ -83,6 +97,7 @@ void vTaskMenu(void * args) {
             case SET_COLORES:
                 menu = "NO ESTA IMPLEMENTADO";
                 sendUSB(menu);
+                getControl();
                 STATES=MENU;
                 break;
         }

@@ -46,4 +46,5 @@ void boton_apretado() {
 void termino_Medida() {
     flag_btn_1 = 0;
     wasPressed = 0;
+    setear_leds(BLACK);
 }
