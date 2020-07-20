@@ -4,12 +4,15 @@
 #include "../mcc_generated_files/adc1.h"
 #include <stdio.h>
 #include "task_USB_READY.h"
-
+#include "../platform/send_sms.h"
 
 static uint8_t temp_max;
 static uint8_t temp_min;
 static uint8_t temp_umbral;
 static ws2812_t array_leds[8];
+static medida_t * medida_aux;
+static uint8_t i;
+static uint16_t acumulado = 0;
 
 static enum {
     APAGADO,
@@ -21,10 +24,6 @@ void Temp_Init() {
 }
 
 void vTaskTemperature(void * args) {
-    int i;
-    char str[50];
-    uint16_t acumulado = 0;
-
     temp_min = 32;
     temp_max = 42;
 
@@ -43,18 +42,20 @@ void vTaskTemperature(void * args) {
         }
         acumulado = (acumulado * 100 / 1023);
 
-        acumulado= acumulado % 10 >= 5 ? (acumulado+10)/10 + 320 : acumulado/10 + 320;
+        acumulado = acumulado % 10 >= 5 ? (acumulado + 10) / 10 + 320 : acumulado / 10 + 320;
 
-        agregarMedida(acumulado);
-        if (acumulado > (temp_umbral * 10)) {
-            setear_leds(RED);
-        } else {
-            setear_leds(GREEN);
+        if (agregarMedida(acumulado, &medida_aux)) {
+            if (acumulado > (temp_umbral * 10)) {
+                send_msj(medida_aux);
+                setear_leds(RED);
+            } else {
+                setear_leds(GREEN);
+            }
+
+            acumulado = 0;
+
+            vTaskDelay(2000);
         }
-
-        acumulado = 0;
-
-        vTaskDelay(2000);
 
         termino_Medida();
 

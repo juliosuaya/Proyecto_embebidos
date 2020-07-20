@@ -25,4 +25,5 @@ tasks/../tasks/task_USB_READY.h  \
  platform/SIM808/SIM808.h  \
  platform/SIM808/../../freeRTOS/include/FreeRTOS.h  \
  platform/SIM808/../../freeRTOS/include/semphr.h  \
- platform/SIM808/../../freeRTOS/include/task.h 
+ platform/SIM808/../../freeRTOS/include/task.h  \
+platform/Log.h 

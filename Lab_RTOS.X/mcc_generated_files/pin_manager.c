@@ -53,7 +53,7 @@
 #include "pin_manager.h"
 #include "system.h"
 
-int flag_btn_1;
+uint8_t flag_btn_1;
 
 /**
  Section: File specific functions

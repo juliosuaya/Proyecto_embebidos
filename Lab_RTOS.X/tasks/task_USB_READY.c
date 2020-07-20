@@ -9,7 +9,7 @@ static SemaphoreHandle_t semaforoEnvio;
 static SemaphoreHandle_t semaforoRecibido;
 static uint8_t * string_aux;
 static uint8_t recibir;
-static int8_t largo;
+static uint8_t largo;
 
 void USB_Init() {
     semaforoEnvio = xSemaphoreCreateBinary();

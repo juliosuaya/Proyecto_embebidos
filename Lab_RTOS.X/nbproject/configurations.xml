@@ -49,6 +49,7 @@
         </logicalFolder>
         <itemPath>platform/WS2812.h</itemPath>
         <itemPath>platform/Log.h</itemPath>
+        <itemPath>platform/send_sms.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="tasks" projectFiles="true">
         <itemPath>tasks/task_UI.h</itemPath>
@@ -105,6 +106,7 @@
         </logicalFolder>
         <itemPath>platform/WS2812.c</itemPath>
         <itemPath>platform/Log.c</itemPath>
+        <itemPath>platform/send_sms.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="tasks" projectFiles="true">
         <itemPath>tasks/task_UI.c</itemPath>

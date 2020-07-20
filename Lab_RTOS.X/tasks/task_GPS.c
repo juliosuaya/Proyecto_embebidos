@@ -6,11 +6,12 @@
 
 static uint8_t trama [255];
 static GPSPosition_t ubicacion;
-static GPSPosition_t ubicacionPrueba;
+static GPSPosition_t ubicacionAux;
 static struct tm hora;
-static uint8_t link[150];
+static uint8_t link[50];
 static int8_t bandera;
 static time_t tiempo;
+uint8_t bandera_trama;
 
 void vTaskGPS(void * args) {
     for (;;) {
@@ -21,13 +22,17 @@ void vTaskGPS(void * args) {
             SIM808_getNMEA(trama);
             bandera = SIM808_validateNMEAFrame(trama);
         }
+        bandera_trama=1;
         GPS_getPosition(&ubicacion, &trama[0]);
         GPS_getUTC(&hora, trama);
         GPS_generateGoogleMaps(link, ubicacion);
         tiempo = mktime(&hora);
+        tiempo-=(3600*3);//Por la diferencia horaria
+        
         xSemaphoreGive(c_semGPSIsReady);
     }
 }
+
 
 void getControl() {
     sendUSB(trama);
@@ -37,11 +42,6 @@ void getControl() {
 
     sendUSB(link);
 
-/*
-    xSemaphoreTake(c_semGSMIsReady, portMAX_DELAY);
-    SIM808_sendSMS("\"098283527\"", "Prueba");
-    xSemaphoreGive(c_semGSMIsReady);
-*/
 }
 
 time_t obtenerFecha() {
@@ -51,4 +51,8 @@ time_t obtenerFecha() {
 void obtenerUbicacion(float * longitud, float * latitud) {
     *longitud =(float) ubicacion.longitude;
     *latitud = (float) ubicacion.latitude;
+}
+
+uint8_t * obtenerLink(){
+    return link;
 }

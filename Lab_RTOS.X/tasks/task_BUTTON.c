@@ -9,7 +9,7 @@
 
 
 static SemaphoreHandle_t semaforo_btn;
-static int wasPressed;
+static uint8_t wasPressed;
 static TaskHandle_t task_temp;
 
 void Boton_Init() {

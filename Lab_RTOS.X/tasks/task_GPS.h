@@ -4,11 +4,15 @@
 #include <stdint.h>
 #include <time.h>
 
+extern uint8_t bandera_trama;
 
 void vTaskGPS(void * args);
 void getControl();
 
-time_t obtenerFecha(); //Verificar formato
+time_t obtenerFecha();
 void obtenerUbicacion(float *,float *);
+
+uint8_t * obtenerLink();
+
 
 #endif

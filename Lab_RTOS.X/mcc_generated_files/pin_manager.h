@@ -52,7 +52,7 @@
 #include <xc.h>
 #include <stdbool.h>
 
-extern int flag_btn_1;
+extern uint8_t flag_btn_1;
 /**
     Section: Device Pin Macros
 */

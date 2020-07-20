@@ -58,6 +58,7 @@
 #include "tasks/task_BUTTON.h"
 #include "tasks/task_GPS.h"
 #include "platform/SIM808/SIM808.h"
+#include "platform/Log.h"
 
 int main(void) {
     // initialize the device
@@ -65,6 +66,7 @@ int main(void) {
     USB_Init();
     Boton_Init();
     Temp_Init();
+    Log_init();
     /* Create the tasks defined within this file. */
 
     xTaskCreate(vTaskUSB, "task1", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1, NULL);
