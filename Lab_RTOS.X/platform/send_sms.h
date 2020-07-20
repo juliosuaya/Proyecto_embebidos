@@ -5,9 +5,9 @@
 
 void send_msj(medida_t *);
 
-void set_phone_number(uint32_t);
+void set_phone_number(int);
 
-void set_id(uint32_t); 
+void set_id(int); 
 
 
 

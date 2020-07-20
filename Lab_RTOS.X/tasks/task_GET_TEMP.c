@@ -8,7 +8,7 @@
 
 static uint8_t temp_max;
 static uint8_t temp_min;
-static uint8_t temp_umbral;
+static uint16_t temp_umbral;
 static ws2812_t array_leds[8];
 static medida_t * medida_aux;
 static uint8_t i;
@@ -20,7 +20,7 @@ static enum {
 } leds_parpadeo_state;
 
 void Temp_Init() {
-    temp_umbral = 37;
+    temp_umbral = 370;
 }
 
 void vTaskTemperature(void * args) {
@@ -45,7 +45,7 @@ void vTaskTemperature(void * args) {
         acumulado = acumulado % 10 >= 5 ? (acumulado + 10) / 10 + 320 : acumulado / 10 + 320;
 
         if (agregarMedida(acumulado, &medida_aux)) {
-            if (acumulado > (temp_umbral * 10)) {
+            if (acumulado > (temp_umbral)) {
                 send_msj(medida_aux);
                 setear_leds(RED);
             } else {
@@ -107,7 +107,7 @@ int tomarTemp() {
 
 }
 
-void set_temp_umbral(uint8_t n) {
+void set_temp_umbral(int n) {
     temp_umbral = n;
 }
 

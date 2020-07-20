@@ -4,12 +4,14 @@
 #include "task_USB_READY.h"
 #include "task.h"
 #include <stdint.h>
+#include <string.h>
 #include "../platform/Log.h"
 #include "task_GPS.h"
 
 static uint8_t * menu;
 static uint8_t recibir[40];
-static uint8_t uint_auxiliar;
+static int uint_auxiliar;
+static int uint_auxiliar2;
 
 void vTaskMenu(void * args) {
 
@@ -36,69 +38,73 @@ void vTaskMenu(void * args) {
                         "5 para resetear el log.\n"
                         "(6 para cambiar colores)\n";
                 sendUSB(menu);
-             //   
+                //   
                 receiveUSB(recibir);
                 sendUSB("\n");
-                
-                
-                
-                uint_auxiliar=atoi(recibir);
-                if(uint_auxiliar==1){
-                    STATES=SET_PHONE;
-                }else
-                if(uint_auxiliar==2){
-                    STATES=SET_ID;
-                }else if(uint_auxiliar==3){
-                    STATES=SET_UMBRAL_TEMP;
-                }else if(uint_auxiliar==4){
-                    STATES=SHOW_LOG;
-                }else if(uint_auxiliar==5){
-                    STATES=RESET_LOG;
-                }else if(uint_auxiliar==6){
-                    STATES=SET_COLORES;
-                }else{
-                    STATES=MENU;
-                }
-                
 
+
+
+                uint_auxiliar = atoi(recibir);
+                if (uint_auxiliar == 1) {
+                    STATES = SET_PHONE;
+                } else
+                    if (uint_auxiliar == 2) {
+                    STATES = SET_ID;
+                } else if (uint_auxiliar == 3) {
+                    STATES = SET_UMBRAL_TEMP;
+                } else if (uint_auxiliar == 4) {
+                    STATES = SHOW_LOG;
+                } else if (uint_auxiliar == 5) {
+                    STATES = RESET_LOG;
+                } else if (uint_auxiliar == 6) {
+                    STATES = SET_COLORES;
+                } else {
+                    STATES = MENU;
+                }
                 break;
 
             case SET_PHONE:
-                menu = "NO_IMPLEMENTADO";
+                menu = "Insertar numero celular: ";
                 sendUSB(menu);
-                STATES=MENU;
+                receiveUSB(recibir);
+                set_phone_number(atoi(recibir));
+                STATES = MENU;
                 break;
             case SET_ID:
-                menu = "ESTE ES EL MENU";
+                menu = "Insertar id dispositivo: ";
                 sendUSB(menu);
                 receiveUSB(recibir);
-                STATES=MENU;
+                set_id(atoi(recibir));
+                STATES = MENU;
                 break;
             case SET_UMBRAL_TEMP:
+                menu = "Insertar temperatura umbral en el siguiente formato: 37,2";
+                sendUSB(menu);
                 receiveUSB(recibir);
-                uint_auxiliar=atoi(recibir);
-                if(uint_auxiliar>42 || uint_auxiliar<32){
-                    menu="El valor debe estar entre 32 y 42";
+                sscanf(recibir,"%d,%d",&uint_auxiliar,&uint_auxiliar2);
+                uint_auxiliar=uint_auxiliar*10 + uint_auxiliar2 ;
+                if (uint_auxiliar > 420 || uint_auxiliar < 320) {
+                    menu = "El valor debe estar entre 32 y 42";
                     sendUSB(menu);
-                    
+
                     break;
                 }
                 set_temp_umbral(uint_auxiliar);
-                STATES=MENU;
+                STATES = MENU;
                 break;
             case SHOW_LOG:
                 descargaMedida();
-                STATES=MENU;
+                STATES = MENU;
                 break;
             case RESET_LOG:
                 resetarLog();
-                STATES=MENU;
+                STATES = MENU;
                 break;
             case SET_COLORES:
                 menu = "NO ESTA IMPLEMENTADO";
                 sendUSB(menu);
                 getControl();
-                STATES=MENU;
+                STATES = MENU;
                 break;
         }
 
