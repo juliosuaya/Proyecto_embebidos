@@ -2,7 +2,8 @@ build/default/debug/tasks/task_GPS.o:  \
 tasks/task_GPS.c  \
 tasks/task_GPS.h  \
  tasks/../tasks/task_USB_READY.h  \
-tasks/../platform/SIM808/SIM808.h  \
+ tasks/../mcc_generated_files/pin_manager.h  \
+ tasks/../platform/SIM808/SIM808.h  \
  tasks/../platform/SIM808/../../freeRTOS/include/FreeRTOS.h  \
  tasks/../platform/SIM808/../../freeRTOS/include/../../FreeRTOSConfig.h  \
  tasks/../platform/SIM808/../../freeRTOS/include/projdefs.h  \

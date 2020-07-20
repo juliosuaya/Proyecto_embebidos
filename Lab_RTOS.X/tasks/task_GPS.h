@@ -7,7 +7,7 @@
 extern uint8_t bandera_trama;
 
 void vTaskGPS(void * args);
-void getControl();
+
 
 time_t obtenerFecha();
 void obtenerUbicacion(float *,float *);

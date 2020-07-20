@@ -1,4 +1,5 @@
 #include "task_GPS.h"
+#include "../mcc_generated_files/pin_manager.h"
 #include "../platform/SIM808/SIM808.h"
 #include "../platform/GPS/GPS.h"
 #include "../freeRTOS/include/FreeRTOS.h"
@@ -14,6 +15,7 @@ static time_t tiempo;
 uint8_t bandera_trama;
 
 void vTaskGPS(void * args) {
+    LEDA_SetHigh();
     for (;;) {
         xSemaphoreTake(c_semGPSIsReady, portMAX_DELAY);
         bandera = 0;
@@ -21,6 +23,9 @@ void vTaskGPS(void * args) {
         while (bandera != 1) {
             SIM808_getNMEA(trama);
             bandera = SIM808_validateNMEAFrame(trama);
+        }
+        if(bandera_trama==0){
+            LEDA_SetLow();
         }
         bandera_trama=1;
         GPS_getPosition(&ubicacion, &trama[0]);
@@ -34,15 +39,6 @@ void vTaskGPS(void * args) {
 }
 
 
-void getControl() {
-    sendUSB(trama);
-
-
-    sendUSB(ctime(&tiempo));
-
-    sendUSB(link);
-
-}
 
 time_t obtenerFecha() {
     return tiempo;

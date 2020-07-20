@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include "../tasks/task_USB_READY.h"
 
-static uint8_t num_cel[12]; //="\"098283527\"";
+static uint8_t num_cel[15]; //="\"098283527\"";
 static uint32_t id;
 static uint8_t msj[85];
 static uint8_t medida_coma;
@@ -26,7 +26,7 @@ void send_msj(medida_t * medida) {
             fecha_y_hora->tm_hour,fecha_y_hora->tm_min, fecha_y_hora->tm_sec,
             obtenerLink(), (medida->lectura) / 10, medida_coma);
     sendUSB(msj);
-    //SIM808_sendSMS(num_cel,msj);
+  //  SIM808_sendSMS(num_cel,msj);
 
 
     xSemaphoreGive(c_semGSMIsReady);

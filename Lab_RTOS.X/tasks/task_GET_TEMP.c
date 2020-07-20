@@ -12,7 +12,7 @@ static uint16_t temp_umbral;
 static ws2812_t array_leds[8];
 static medida_t * medida_aux;
 static uint8_t i;
-static uint16_t acumulado = 0;
+static int acumulado = 0;
 
 static enum {
     APAGADO,
@@ -31,19 +31,23 @@ void vTaskTemperature(void * args) {
 
     for (;;) {
         boton_apretado();
+        acumulado = 0;
 
 
         for (i = 0; i < 10; i++) {
-            acumulado += tomarTemp(); //*100 / 1023 + 320;
+            acumulado += tomarTemp();
             maq_est_leds();
 
             vTaskDelay(pdMS_TO_TICKS(250));
 
         }
-        acumulado = (acumulado * 100 / 1023);
 
-        acumulado = acumulado % 10 >= 5 ? (acumulado + 10) / 10 + 320 : acumulado / 10 + 320;
-
+        if ((acumulado * 10) % 1023 >= 5) {
+            acumulado = acumulado * 10 / 1023 + 320;
+            acumulado += 1;
+        } else {
+            acumulado = acumulado * 10 / 1023 + 320;
+        }
         if (agregarMedida(acumulado, &medida_aux)) {
             if (acumulado > (temp_umbral)) {
                 send_msj(medida_aux);
@@ -51,8 +55,6 @@ void vTaskTemperature(void * args) {
             } else {
                 setear_leds(GREEN);
             }
-
-            acumulado = 0;
 
             vTaskDelay(2000);
         }
@@ -102,6 +104,9 @@ int tomarTemp() {
     }
 
     int res = ADC1_ConversionResultGet();
+    if (res > 1023) {
+        return 1023;
+    }
     return res;
 
 

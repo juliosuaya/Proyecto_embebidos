@@ -46,6 +46,12 @@ uint8_t agregarMedida(uint16_t lectura,medida_t ** med_a_guardar)
 void descargaMedida() {
 
     xSemaphoreTake(semaforo_log, portMAX_DELAY);
+    
+    if(indice==0){
+        sendUSB("El log esta vacio");
+        xSemaphoreGive(semaforo_log);
+        return;
+    }
 
     for (iterator = 0; iterator < indice; iterator++) {
         /*
