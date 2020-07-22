@@ -21,7 +21,8 @@ xSemaphoreHandle semaforo_log;
 void Log_init() {
     semaforo_log = xSemaphoreCreateMutex();
 }
-
+/*Se recibe un puntero doble, para poder guardar la direccion de memoria de una determinada medida.
+ */
 uint8_t agregarMedida(uint16_t lectura,medida_t ** med_a_guardar)
   {
     if(bandera_trama==0){

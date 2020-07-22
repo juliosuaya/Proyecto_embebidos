@@ -6,7 +6,7 @@
 
 void vTaskTemperature(void * args);
 void Temp_Init() ;
-void setear_leds(ws2812_t);
+void setear_leds(ws2812_t color);
 void set_temp_umbral(int n);
 
 

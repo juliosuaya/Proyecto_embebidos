@@ -28,7 +28,7 @@ void vTaskGPS(void * args) {
             LEDA_SetLow();
         }
         bandera_trama=1;
-        GPS_getPosition(&ubicacion, &trama[0]);
+        GPS_getPosition(&ubicacion, trama);
         GPS_getUTC(&hora, trama);
         GPS_generateGoogleMaps(link, ubicacion);
         tiempo = mktime(&hora);

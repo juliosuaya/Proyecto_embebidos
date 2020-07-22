@@ -3,11 +3,11 @@
 #include <stdint.h>
 #include "Log.h"
 
-void send_msj(medida_t *);
+void send_msj(medida_t * medida );
 
-void set_phone_number(int);
+void set_phone_number(int num);
 
-void set_id(int); 
+void set_id(int new_id); 
 
 
 

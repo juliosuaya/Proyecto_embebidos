@@ -23,6 +23,20 @@ void Temp_Init() {
     temp_umbral = 370;
 }
 
+void maq_est_leds() {
+    switch (leds_parpadeo_state) {
+        case(APAGADO):
+            setear_leds(BLACK);
+            leds_parpadeo_state = PRENDIDO;
+            break;
+        case(PRENDIDO):
+            setear_leds(BLUE);
+            leds_parpadeo_state = APAGADO;
+            break;
+    }
+
+}
+
 void vTaskTemperature(void * args) {
     temp_min = 32;
     temp_max = 42;
@@ -51,33 +65,19 @@ void vTaskTemperature(void * args) {
         if (agregarMedida(acumulado, &medida_aux)) {
             if (acumulado > (temp_umbral)) {
                 send_msj(medida_aux);
-                setear_leds(RED);
-            } else {
-                setear_leds(GREEN);
             }
-
-            vTaskDelay(2000);
         }
-
+        if (acumulado > (temp_umbral)) {
+            setear_leds(RED);
+        } else {
+            setear_leds(GREEN);
+        }
+        vTaskDelay(2000);
         termino_Medida();
-
-
     }
 }
 
-void maq_est_leds() {
-    switch (leds_parpadeo_state) {
-        case(APAGADO):
-            setear_leds(BLACK);
-            leds_parpadeo_state = PRENDIDO;
-            break;
-        case(PRENDIDO):
-            setear_leds(BLUE);
-            leds_parpadeo_state = APAGADO;
-            break;
-    }
 
-}
 
 void setear_leds(ws2812_t color) {
     array_leds[0] = color;

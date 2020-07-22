@@ -17,7 +17,7 @@ typedef struct {
     time_t fecha;
 } medida_t;
 
-uint8_t agregarMedida(uint16_t,medida_t **);
+uint8_t agregarMedida(uint16_t lectura,medida_t ** med_a_guardar);
 
 void descargaMedida();
 

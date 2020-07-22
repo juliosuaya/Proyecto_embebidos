@@ -10,7 +10,7 @@ void vTaskGPS(void * args);
 
 
 time_t obtenerFecha();
-void obtenerUbicacion(float *,float *);
+void obtenerUbicacion(float * longitud, float * latitud);
 
 uint8_t * obtenerLink();
 
