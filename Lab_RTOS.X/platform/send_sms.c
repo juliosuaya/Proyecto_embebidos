@@ -14,6 +14,9 @@ static uint8_t msj[85];
 static uint8_t medida_coma;
 static struct tm * fecha_y_hora;
 
+/*
+ * Espera al semaforo , y luego le da el formato esperado al mensaje y lo envia.
+ */
 void send_msj(medida_t * medida) {
     xSemaphoreTake(c_semGSMIsReady, portMAX_DELAY);
 
@@ -32,7 +35,7 @@ void send_msj(medida_t * medida) {
 }
 
 void set_phone_number(int num) {
-    sprintf(num_cel, "\"0%d\"", num);
+    sprintf(num_cel, "\"0%d\"", num);//Se agrega un 0 al inicio del numero, ya que el atoi se lo quita.
 }
 
 void set_id(int new_id) {

@@ -15,7 +15,9 @@ void USB_Init() {
     semaforoEnvio = xSemaphoreCreateBinary();
     semaforoRecibido = xSemaphoreCreateBinary();
 }
-
+/*
+ * vTaskUsb se encarga de gestionar la entrega de dos semaforos.
+ */
 void vTaskUSB(void * args) {
     for (;;) {
         if ((USBGetDeviceState() >= CONFIGURED_STATE) && !USBIsDeviceSuspended()) {
@@ -33,7 +35,7 @@ void vTaskUSB(void * args) {
             }
         }
     }
-}//Actualizar semaforo de USB para permitir envio
+}
 
 void sendUSB(uint8_t * str) {
     xSemaphoreTake(semaforoEnvio, portMAX_DELAY);

@@ -61,7 +61,7 @@
 #include "platform/Log.h"
 
 int main(void) {
-    // initialize the device
+    // initialize the device, the semaphores and initial values.
     SYSTEM_Initialize();
     USB_Init();
     Boton_Init();
@@ -74,10 +74,10 @@ int main(void) {
     xTaskCreate(vTaskBoton, "task3", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(vTaskTemperature, "task4", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 4, NULL);
     xTaskCreate(vTaskGPS, "task5", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1, NULL);
-    
-    
-    
 
+
+
+    //Tareas brindadas por la catedra para el manejo del modulo sim808
     xTaskCreate(SIM808_taskCheck, "modemTask", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(SIM808_initModule, "modemIni", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 2, &modemInitHandle);
 

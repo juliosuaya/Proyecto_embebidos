@@ -14,6 +14,9 @@ static int8_t bandera;
 static time_t tiempo;
 uint8_t bandera_trama;
 
+/*
+ * Esta tarea se encarga de actualizar constantemente la trama y con ella la ubicacion y la hora del dispositivo.
+ */
 void vTaskGPS(void * args) {
     LEDA_SetHigh();
     for (;;) {

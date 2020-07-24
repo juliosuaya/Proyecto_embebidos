@@ -13,6 +13,13 @@ static uint8_t recibir[40];
 static int uint_auxiliar;
 static int uint_auxiliar2;
 
+/*
+ * Se encarga de la UI.
+ * Mediante el switch case se gestionan las posibles entradas validas al menu.
+ * Actua de intermediaria entre otras task y el usuario.
+ */
+
+
 void vTaskMenu(void * args) {
 
     for (;;) {
@@ -50,8 +57,8 @@ void vTaskMenu(void * args) {
                 receiveUSB(recibir);
                 sscanf(recibir, "%d,%d", &uint_auxiliar, &uint_auxiliar2);
                 uint_auxiliar = uint_auxiliar * 10 + uint_auxiliar2;
-                while (uint_auxiliar > 420 || uint_auxiliar < 320) {
-                    menu = "El valor debe estar entre 32 y 42";
+                while (uint_auxiliar > 420 || uint_auxiliar < 320 || uint_auxiliar2>9 ) {
+                    menu = "El valor debe estar entre 32,0 y 42,0. Con un decimal";
                     sendUSB(menu);
                     receiveUSB(recibir);
                     sscanf(recibir, "%d,%d", &uint_auxiliar, &uint_auxiliar2);
